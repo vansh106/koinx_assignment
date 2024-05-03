@@ -1,12 +1,13 @@
 const express = require('express');
 const transactionController = require('../controllers/transactionController');
+const ethPriceController = require('../controllers/ethPriceController');
+
 
 const router = express.Router();
 
 router.get('/transactions/:address', async (req, res) => {
 
   const address = req.params.address;
-  console.log(address)
   try {
     const transactions = await transactionController.getTransactions(address);
     console.log(transactions)
@@ -16,6 +17,9 @@ router.get('/transactions/:address', async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Error fetching transactions' });
   }
+
 });
+
+
 
 module.exports = router;
