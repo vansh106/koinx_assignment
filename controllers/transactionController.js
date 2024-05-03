@@ -6,9 +6,10 @@ require('dotenv').config({ path: __dirname + '/../cred.env' });
 
 const getTransactions = async (address) => {
     const apiKey = process.env.ETHERSCAN_API_KEY;
-
+    const endBlock = process.env.ETHEREUM_ENDBLOCK;
+    
     try {
-        const response = await axios.get(API_ENDPOINTS.Eth_Transactions(address, apiKey));
+        const response = await axios.get(API_ENDPOINTS.Eth_Transactions(address, apiKey, endBlock));
         const transactions = response.data.result;
         return transactions;
     } catch (error) {
