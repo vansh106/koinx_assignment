@@ -4,7 +4,6 @@ const transactionController = require('../controllers/transactionController');
 const router = express.Router();
 
 router.get('/transactions/:address', async (req, res) => {
-  console.log("henlo")
 
   const address = req.params.address;
   console.log(address)
