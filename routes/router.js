@@ -20,6 +20,9 @@ router.get('/transactions/:address', async (req, res) => {
 
 });
 
-
+router.get('/ethPrice', async (_, res) => {
+  const price = await ethPriceController.fetchEthPriceFromDB();
+  res.json(price);
+});
 
 module.exports = router;

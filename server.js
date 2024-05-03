@@ -15,7 +15,7 @@ const port = process.env.PORT || 3000;
   await mongoose.connect(process.env.MONGODB_URI);
   console.log('Connected to MongoDB!');
 
-  const _ = schedule.scheduleJob('*/10 * * * *', async () => { 
+  const job = schedule.scheduleJob('*/10 * * * *', async () => { 
     const price = await ethPriceController.fetchEthereumPrice();
     await ethPriceController.saveEthPrice(price); 
   });
