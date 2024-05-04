@@ -8,7 +8,7 @@ const processTransaction = async (req, res) => {
     const address = req.params.address;
     try {
         const transactions = await getTransactions(address);
-        await saveTransactions(transactions, address);
+        saveTransactions(transactions, address);
         res.json(transactions);
     } catch (error) {
         console.error(error);
