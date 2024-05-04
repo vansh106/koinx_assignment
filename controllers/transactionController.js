@@ -7,10 +7,12 @@ require('dotenv').config({ path: __dirname + '/../cred.env' });
 const getTransactions = async (address) => {
     const apiKey = process.env.ETHERSCAN_API_KEY;
     const endBlock = process.env.ETHEREUM_ENDBLOCK;
-    
+
     try {
         const response = await axios.get(API_ENDPOINTS.Eth_Transactions(address, apiKey, endBlock));
+
         const transactions = response.data.result;
+        // console.log(transactions)
         return transactions;
     } catch (error) {
         throw new Error('Error fetching transactions');
@@ -19,18 +21,37 @@ const getTransactions = async (address) => {
 
 };
 
-const saveTransactions = async (transactions, address) => {
-    try {
+const saveTransactions = async (transactions, addresss) => {
 
-        const existingTransactions = await Transaction.find({ address });
-        // console.log(existingTransactions)
-        if (!existingTransactions.length) {
+    try {
+        const existingTransactions = await Transaction.find({ from: addresss }).exec();
+
+        if (existingTransactions.length > 0) {
+            
+            await Transaction.deleteMany({ from: addresss }).exec();
             await Transaction.insertMany(transactions);
+            console.log("Transactions updated for " + addresss)
+        } else {
+            
+            await Transaction.create(transactions);
+            console.log('Transactions saved successfully for ' + addresss);
         }
+
     } catch (error) {
-        throw new Error('Error saving transactions');
+        console.error('Error saving transactions:', error);
     }
+
+    // Transaction.find({ $or: [{ from: addresss }, { to: addresss }] })
+    //     .then(transactions => {
+    //         console.log(`Transactions for address ${addresss}:`, transactions);
+    //     })
+    //     .catch(err => {
+    //         console.error(`Error finding transactions for address ${addresss}:`, err);
+    //     })
+
 };
+
+
 
 module.exports = {
     getTransactions,

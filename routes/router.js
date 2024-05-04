@@ -10,14 +10,12 @@ router.get('/transactions/:address', async (req, res) => {
   const address = req.params.address;
   try {
     const transactions = await transactionController.getTransactions(address);
-    console.log(transactions)
     await transactionController.saveTransactions(transactions, address);
     res.json(transactions);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error fetching transactions' });
   }
-
 });
 
 router.get('/ethPrice', async (_, res) => {
