@@ -1,12 +1,11 @@
 const express = require('express');
 const transactionController = require('../controllers/transactionController');
 const ethPriceController = require('../controllers/ethPriceController');
-
+const userBalanceController = require('../controllers/userBalanceController');
 
 const router = express.Router();
 
 router.get('/transactions/:address', async (req, res) => {
-
   const address = req.params.address;
   try {
     const transactions = await transactionController.getTransactions(address);
@@ -22,5 +21,8 @@ router.get('/ethPrice', async (_, res) => {
   const price = await ethPriceController.fetchEthPriceFromDB();
   res.json(price);
 });
+
+
+router.get('/userBalance/:address', userBalanceController.getUserBalance);
 
 module.exports = router;
