@@ -5,23 +5,9 @@ const userBalanceController = require('../controllers/userBalanceController');
 
 const router = express.Router();
 
-router.get('/transactions/:address', async (req, res) => {
-  const address = req.params.address;
-  try {
-    const transactions = await transactionController.getTransactions(address);
-    await transactionController.saveTransactions(transactions, address);
-    res.json(transactions);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error fetching transactions' });
-  }
-});
+router.get('/transactions/:address', transactionController.processTransaction);
 
-router.get('/ethPrice', async (_, res) => {
-  const price = await ethPriceController.fetchEthPriceFromDB();
-  res.json(price);
-});
-
+router.get('/ethPrice', ethPriceController.fetchEthPriceFromDB);
 
 router.get('/userBalance/:address', userBalanceController.getUserBalance);
 
