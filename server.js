@@ -17,17 +17,21 @@ const port = process.env.PORT || 3000;
 
   app.use('/api/v1', Router);
 
+  app.get('/', (_, res) => {
+    res.redirect('/api/v1/ethPrice');
+  });
+
   app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
   });
 })();
 
-async function ConnectToMongo(){
+async function ConnectToMongo() {
   await mongoose.connect(process.env.MONGODB_URI);
   console.log('Connected to MongoDB!');
 }
 
-function cronJob(){
+function cronJob() {
   schedule.scheduleJob('*/10 * * * *', async () => {
     const price = await ethPriceController.fetchEthereumPrice();
     await ethPriceController.saveEthPrice(price);

@@ -1,5 +1,8 @@
 # Koinx Blockchain + Backend assignment
 
+### Deployed Link: 
+[Instead of curl requests, just access this](https://koinx-aa4f50defc10.herokuapp.com/api/v1/ethPrice)
+
 ### Project setup 
 
 After cloning the repo:
@@ -30,7 +33,7 @@ curl http://localhost:3000/api/v1/addressBalance/0x2c1ba59d6f58433fb1eaee7d20b26
 curl http://localhost:3000/api/v1/ethPrice
 ```
 
-## Algorithms :
+## Algorithms:
 
 #### Saving Transactions:
 
@@ -45,7 +48,10 @@ curl http://localhost:3000/api/v1/ethPrice
 - Simple algorithm to assess all the transactions stored of every address in DB. Then filtering out all the txns with "from" and "to" = address provided. And then performing basic computation. NOTE: Value of txn provided in api response is in WEI unit (10**18 times of ETH), it was converted to ETH and balance was computed.
 
 #### Cron job: 
-- Cron jobs were used to fetch the Eth price every 10 minutes. Moreover, if you need to find it manually, I have made a custom endpoint as well. ( See ss) 
+- Cron jobs were used to fetch the Eth price every 10 minutes. Moreover, if you need to find it manually, I have made a custom endpoint as well. ( See ss). 
+
+#### DB schema
+- Head to /models/ to see both the DB schemas. 
 
 ## Result Sceenshots
 
@@ -58,7 +64,7 @@ curl http://localhost:3000/api/v1/ethPrice
 - ETH Price through endpoint ( Task 2 )
 ![eth](/examples/ss/ethPrice.png)
 
-- Address Balance 
+- Address Balance:
 The reason its negative, because our database only contains the transactions where address provided only sent ETH, not received. 
 ![balance](/examples/ss/addressBalance.png)
 
