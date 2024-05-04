@@ -1,6 +1,6 @@
 const Transaction = require('../models/transaction');
 
-const getUserBalance = async (req, res) => {
+const getAddressBalance = async (req, res) => {
     const address = req.params.address;
 
     if (!address) {
@@ -25,5 +25,5 @@ const getUserBalance = async (req, res) => {
 };
 
 module.exports = {
-    getUserBalance
+    getAddressBalance
 };

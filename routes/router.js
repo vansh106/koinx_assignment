@@ -9,6 +9,6 @@ router.get('/transactions/:address', transactionController.processTransaction);
 
 router.get('/ethPrice', ethPriceController.fetchEthPriceFromDB);
 
-router.get('/userBalance/:address', userBalanceController.getUserBalance);
+router.get('/addressBalance/:address', userBalanceController.getAddressBalance);
 
 module.exports = router;

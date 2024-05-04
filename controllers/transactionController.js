@@ -7,7 +7,7 @@ require('dotenv').config({ path: __dirname + '/../cred.env' });
 const processTransaction = async (req, res) => {
     const address = req.params.address;
     try {
-        const transactions = getTransactions(address);
+        const transactions = await getTransactions(address);
         await saveTransactions(transactions, address);
         res.json(transactions);
     } catch (error) {
@@ -49,8 +49,6 @@ const saveTransactions = async (transactions, addresss) => {
         throw new Error('Error saving transactions');
     }
 };
-
-
 
 module.exports = {
     processTransaction,
