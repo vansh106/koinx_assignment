@@ -22,15 +22,27 @@ Or skip to the results screenshots below to save time.
 ```
 curl http://localhost:3000/api/v1/transactions/0x2c1ba59d6f58433fb1eaee7d20b26ed83bda51a3
 ```
+OR
+```
+https://koinx-aa4f50defc10.herokuapp.com/api/v1/transactions/0x2c1ba59d6f58433fb1eaee7d20b26ed83bda51a3
+```
 
 - Fetching current eth balance of an address: 
 ```
 curl http://localhost:3000/api/v1/addressBalance/0x2c1ba59d6f58433fb1eaee7d20b26ed83bda51a3
 ```
+OR 
+```
+https://koinx-aa4f50defc10.herokuapp.com/api/v1/addressBalance/0x2c1ba59d6f58433fb1eaee7d20b26ed83bda51a3
+```
 
 - Fetching Current Eth price: 
 ```
 curl http://localhost:3000/api/v1/ethPrice
+```
+OR
+```
+https://koinx-aa4f50defc10.herokuapp.com/api/v1/ethPrice
 ```
 
 ## Algorithms:
